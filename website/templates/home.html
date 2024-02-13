@@ -2,20 +2,58 @@
 
 {% block content %}
 
-<div class="col-md-6 offset-md-3">
+
 
 {% if user.is_authenticated %}
 
-<div class="container1">
-  <h1 class="text-center">Hello World!</h1>
-</div>
-<style>.container1 {
-  text-align: center;
-  margin: 0 auto;
-  width: 100%; /* Adjust the width as needed */
-}</style>
+
+
+  <table class="table table-striped table-hover table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">City</th>
+        <th scope="col">State</th>
+        <th scope="col">Created At</th>
+
+      </tr>
+    </thead>
+    </tr>
+  </tbody>
+
+  <style>.table-striped {
+    font-size: 19px; /* Adjust the value as needed */
+  }</style>
+
+  {% if records %}
+    {% for record in records %}
+    <tr>
+        <td><a href="{% url 'record' record.id %}">{{record.id}}</a></td>
+        <td>{{record.first_name}}
+        {{record.last_name}}</td>
+        <td>{{record.email}}</td>
+        <td>{{record.phone}}</td>
+        <td>{{record.city}}</td>
+        <td>{{record.state}}</td>
+        <td>{{record.created_at}}</td>
+    </tr>
+
+      <br>
+    {% endfor %}
+  {% endif %}
+</tr>
+</thead>
+</tr>
+</tbody>
+</table>
 
 {% else %}
+
+<div class="col-md-6 offset-md-3">
+
 
 <h1>Login</h1>
 <br/>
@@ -34,8 +72,8 @@
         <button type="submit" class="btn btn-secondary">Login</button>
       </form>
 </form>
-
 </div>
+
 
 {% endif %}
 
